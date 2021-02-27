@@ -11,7 +11,8 @@ class App extends React.Component {
                 {name: 'США', capital: 'Вашингтон'},
                 {name: 'Канада', capital: 'Октава'},
                 {name: 'Кипр', capital: 'Кипр'},
-                {name: 'Австралия', capital: 'Канберра'}
+                {name: 'Австралия', capital: 'Канберра'},
+                {name: 'Германия', capital: 'Бонн'}
             ],
             title: 'Города',
             number: ''
@@ -31,28 +32,20 @@ class App extends React.Component {
         })
     }
 
-    onClickHandler(x){
-        this.setState({title: x})
-    }
-
-    onClickHandler2 = (title) => {
+    onClickHandler = (title) => {
         this.setState({title})
     }
 
     render() {
         console.log(this.state)
         let countries = this.state.countries
-        let click = this.onClickHandler.bind(this)  // Для пересылки в другой объект надо биндить к методу сам объект
-
         return (
             <div>
                 <div className="App" style={{display: 'block'}}>
                     <h1>{this.state.title}</h1>
-                    <Country name={countries[0].name} capital={countries[0].capital} click={click} />
-                    <Country name={countries[1].name} capital={countries[1].capital} click={click} />
-                    <Country name={countries[2].name} capital={countries[2].capital} click={click} />
-                    <Country name={countries[3].name} capital={countries[3].capital} click={click} />
-                    <Country name={countries[4].name} capital={countries[4].capital} click={this.onClickHandler2} />
+                    {countries.map((item, index) => {
+                        return <Country name={item.name} capital={item.capital} click={this.onClickHandler} key={index}/>  // нужно передавать уникальный key
+                    })}
                 </div>
                 <div>
                     <select onChange={this.optionHandler}>
