@@ -1,6 +1,6 @@
 import React from "react";
-import './App.css';
-import {Country} from './components/Country'
+import './App.scss';
+import {Country} from './components/country/Country'
 
 class App extends React.Component {
     constructor(props) {
