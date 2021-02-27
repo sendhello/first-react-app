@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Country = ({name, capital, click}) => {
+export const Country = ({name, capital, click, showDescr}) => {
     const style = {
         textAlign: 'center',
         width: '200px',
@@ -13,10 +13,21 @@ export const Country = ({name, capital, click}) => {
         margin: '0 5px'
     }
 
-    return (
-        <div style={style}>
-            <h2 onClick={() => click(name)}>Страна: {name}</h2>
-            <h3>Столица: {capital}</h3>
-        </div>
-    )
+    if (showDescr) {
+        return (
+            <div style={style}>
+                <h2 onClick={() => click(name)}>Страна: {name}</h2>
+                <h3>Столица: {capital}</h3>
+                <h3>Описание:</h3>
+                <p>Тескт описания</p>
+            </div>
+        )
+    } else {
+        return (
+            <div style={style}>
+                <h2 onClick={() => click(name)}>Страна: {name}</h2>
+                <h3>Столица: {capital}</h3>
+            </div>
+        )
+    }
 }

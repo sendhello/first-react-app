@@ -15,7 +15,9 @@ class App extends React.Component {
                 {name: 'Германия', capital: 'Бонн'}
             ],
             title: 'Города',
-            number: ''
+            number: '',
+            showCards: false,
+            showDescription: false
         }
     }
 
@@ -36,26 +38,31 @@ class App extends React.Component {
         this.setState({title})
     }
 
+    showDescriptionHandler = () => {
+        this.setState({showDescription: !this.state.showDescription})
+    }
+
+    showCardsHandler = () => {
+        this.setState({showCards: !this.state.showCards})
+    }
+
     render() {
         console.log(this.state)
         let countries = this.state.countries
         return (
             <div>
-                <div className="App" style={{display: 'block'}}>
-                    <h1>{this.state.title}</h1>
-                    {countries.map((item, index) => {
-                        return <Country name={item.name} capital={item.capital} click={this.onClickHandler} key={index}/>  // нужно передавать уникальный key
-                    })}
-                </div>
-                <div>
-                    <select onChange={this.optionHandler}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-                <div><button onClick={() => this.onClickHandler('onClick')}>RUN</button></div>
-                <input type='text' onChange={this.inputHandler} />
+                {this.state.showCards ?
+                    <div className="App" style={{display: 'block'}}>
+                        <h1>{this.state.title}</h1>
+                        {countries.map((item, index) => {
+                            return <Country name={item.name} capital={item.capital} click={this.onClickHandler}
+                                            key={index} showDescr={this.state.showDescription}/>  // нужно передавать уникальный key
+                        })}
+                    </div>
+                    : null
+                }
+                <button onClick={this.showCardsHandler}>SHOW/HIDE</button>
+                <button onClick={this.showDescriptionHandler}>DESCRIPTION</button>
             </div>
         )
     }
