@@ -35,8 +35,8 @@ class App extends React.Component {
         this.setState({title: x})
     }
 
-    onClickHandler2 = (x) => {
-        this.setState({title: x})
+    onClickHandler2 = (title) => {
+        this.setState({title})
     }
 
     render() {
