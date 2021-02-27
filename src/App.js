@@ -2,6 +2,7 @@ import React from "react";
 import './App.scss';
 import {Country} from './components/country/Country'
 import {Expo} from "./components/Expo";
+import Footer from "./components/footer/Footer";
 
 class App extends React.Component {
     constructor(props) {
@@ -73,6 +74,8 @@ class App extends React.Component {
                 }
                 <button onClick={this.showCardsHandler}>SHOW/HIDE</button>
                 <button onClick={this.showDescriptionHandler}>DESCRIPTION</button>
+
+                <Footer />
             </div>
         )
     }

@@ -1,9 +1,11 @@
 import React from "react";
+import {Auxillary} from "./hoc/Auxillary";
 
 export const Expo = () => {
     return(
-        <React.Fragment>
+        <Auxillary>
             <h1>Fragment H1</h1>
-        </React.Fragment>
+            <h2>Fragment H2</h2>
+        </Auxillary>
     )
 }
