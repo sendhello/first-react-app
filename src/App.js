@@ -1,6 +1,7 @@
 import React from "react";
 import './App.scss';
 import {Country} from './components/country/Country'
+import {Expo} from "./components/Expo";
 
 class App extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class App extends React.Component {
             ],
             title: 'Города',
             number: '',
-            showCards: false,
+            showCards: true,
             showDescription: false
         }
     }
@@ -46,14 +47,23 @@ class App extends React.Component {
         this.setState({showCards: !this.state.showCards})
     }
 
+    // componentWillMount() {
+    //     console.log('Run componentWillMount')
+    // }
+    //
+    // componentDidMount() {
+    //     console.log('Run componentDidMount')
+    // }
+
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         let countries = this.state.countries
         return (
             <div>
                 {this.state.showCards ?
                     <div className="App" style={{display: 'block'}}>
                         <h1>{this.state.title}</h1>
+                        <Expo />
                         {countries.map((item, index) => {
                             return <Country name={item.name} capital={item.capital} click={this.onClickHandler}
                                             key={index} showDescr={this.state.showDescription}/>  // нужно передавать уникальный key
