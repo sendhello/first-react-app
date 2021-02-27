@@ -27,7 +27,7 @@ class App extends React.Component {
 
     optionHandler = (event) => {
         this.setState({
-            title: event.target.value
+            title: 'option ' + event.target.value
         })
     }
 
@@ -55,7 +55,7 @@ class App extends React.Component {
                     <Country name={countries[4].name} capital={countries[4].capital} click={this.onClickHandler2} />
                 </div>
                 <div>
-                    <select onChange={() => this.onClickHandler('qqq')}>
+                    <select onChange={this.optionHandler}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
