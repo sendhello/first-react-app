@@ -3,8 +3,7 @@ import './App.scss';
 import {Country} from './components/country/Country'
 import {Expo} from "./components/Expo";
 import Footer from "./components/footer/Footer";
-
-export const MyContext = React.createContext('')
+import {HookContext} from "./context/HookContext";
 
 class App extends React.Component {
     constructor(props) {
@@ -66,25 +65,25 @@ class App extends React.Component {
         // console.log(this.state)
         let countries = this.state.countries
         return (
-            <MyContext.Provider value={{title: this.state.expoTitle}}>
-                <div>
-                    {this.state.showCards ?
-                        <div className="App" style={{display: 'block'}}>
-                            <h1 ref={this.headRef}>{this.state.title}</h1>
-                            <Expo/>
-                            {countries.map((item, index) => {
-                                return <Country name={item.name} capital={item.capital} click={this.onClickHandler}
-                                                key={index} showDescr={this.state.showDescription}/>  // нужно передавать уникальный key
-                            })}
-                        </div>
-                        : null
-                    }
-                    <button onClick={this.showCardsHandler}>SHOW/HIDE</button>
-                    <button onClick={this.showDescriptionHandler}>DESCRIPTION</button>
+            <HookContext.Provider value={{state: this.state}}>
+            <div>
+                {this.state.showCards ?
+                    <div className="App" style={{display: 'block'}}>
+                        <h1 ref={this.headRef}>{this.state.title}</h1>
+                        <Expo/>
+                        {countries.map((item, index) => {
+                            return <Country name={item.name} capital={item.capital} click={this.onClickHandler}
+                                            key={index} showDescr={this.state.showDescription}/>  // нужно передавать уникальный key
+                        })}
+                    </div>
+                    : null
+                }
+                <button onClick={this.showCardsHandler}>SHOW/HIDE</button>
+                <button onClick={this.showDescriptionHandler}>DESCRIPTION</button>
 
-                    <Footer/>
-                </div>
-            </MyContext.Provider>
+                <Footer/>
+            </div>
+            </HookContext.Provider>
         )
     }
 }

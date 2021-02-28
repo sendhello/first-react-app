@@ -1,10 +1,11 @@
-import React from "react";
-import {MyContext} from '../../App'
+import React, {useContext} from "react";
+import {HookContext} from "../../context/HookContext";
 
 export const Expo2 = () => {
+    const {state} = useContext(HookContext)
+    console.log('Expo2', state)
+
     return (
-        <MyContext.Consumer>
-            {(value) => <h1>{value.title}</h1>}
-        </MyContext.Consumer>
+        <h1>{state.expoTitle}</h1>
     )
 }
