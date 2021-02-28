@@ -21,6 +21,7 @@ class App extends React.Component {
             showCards: true,
             showDescription: false
         }
+        this.headRef = React.createRef()
     }
 
     inputHandler = (event) => {
@@ -51,10 +52,12 @@ class App extends React.Component {
     // componentWillMount() {
     //     console.log('Run componentWillMount')
     // }
-    //
-    // componentDidMount() {
-    //     console.log('Run componentDidMount')
-    // }
+
+    componentDidMount() {
+        console.log('Run componentDidMount')
+        console.log('headRef:')
+        console.log(this.headRef.current)
+    }
 
     render() {
         // console.log(this.state)
@@ -63,11 +66,11 @@ class App extends React.Component {
             <div>
                 {this.state.showCards ?
                     <div className="App" style={{display: 'block'}}>
-                        <h1>{this.state.title}</h1>
+                        <h1 ref={this.headRef}>{this.state.title}</h1>
                         <Expo />
                         {countries.map((item, index) => {
                             return <Country name={item.name} capital={item.capital} click={this.onClickHandler}
-                                            key={index} showDescr={this.state.showDescription}/>  // нужно передавать уникальный key
+                                            key={index} showDescr={this.state.showDescription} />  // нужно передавать уникальный key
                         })}
                     </div>
                     : null
