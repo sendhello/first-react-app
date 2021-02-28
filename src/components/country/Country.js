@@ -1,5 +1,6 @@
 import React from "react";
 import classes from './country.module.scss'
+import PropTypes from 'prop-types'
 
 export const Country = ({name, capital, click, showDescr}) => {
     if (showDescr) {
@@ -19,4 +20,11 @@ export const Country = ({name, capital, click, showDescr}) => {
             </div>
         )
     }
+}
+
+Country.propTypes = {
+    name: PropTypes.string,
+    capital: PropTypes.string,
+    click: PropTypes.func,
+    showDescr: PropTypes.bool
 }
